@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import {NavLink} from "react-router-dom";
 
-const NavItem = ({label, address}) => {
+const NavItem = ({label, address, icon}) => {
   return (
     <NavLink
       to={address}
@@ -10,6 +10,7 @@ const NavItem = ({label, address}) => {
       }
     >
       <span className="font-Archivo">{label}</span>
+      <span className="text-xl">{icon}</span>
     </NavLink>
   );
 };
