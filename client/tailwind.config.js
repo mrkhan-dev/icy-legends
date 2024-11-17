@@ -13,6 +13,7 @@ export default {
         "banner-gradient":
           "linear-gradient(180deg, #FFFFFF 10%, rgba(0, 0, 0, 0) 100%)",
         "bg-image-1": "url('./src/assets/banner-image/bb.png')",
+        "signUp-image": "url('./src/assets/signup/ice-cream-1.jpeg')",
       },
     },
   },

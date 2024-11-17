@@ -46,9 +46,11 @@ const Navbar = () => {
             </div>
             <div className="flex items-center ml-10 gap-2">
               <AiOutlineShopping className="text-3xl text-gray-700" />
-              <button className="bg-[#F83D8E] text-white py-2 font-Archivo font-semibold rounded-3xl px-7">
-                Sign Up
-              </button>
+              <Link to="/signUp">
+                <button className="bg-[#F83D8E] text-white py-2 font-Archivo font-semibold rounded-3xl px-7">
+                  Sign Up
+                </button>
+              </Link>
             </div>
           </div>
         </div>
