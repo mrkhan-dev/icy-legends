@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 
 const SignUp = () => {
   return (
-    <section className="bg-signUp-image min-h-screen">
+    <section className="md:bg-signUp-image min-h-screen">
       <div className="container px-6 py-24 mx-auto lg:py-32">
         <div className="lg:flex">
           <div className="lg:w-1/2">
@@ -11,7 +11,7 @@ const SignUp = () => {
               <img className="w-auto h-20" src={logo} alt="logo" />
             </Link>
 
-            <h1 className="mt-4 font-Berkshire text-6xl text-[#0F0200] leading-[74px]">
+            <h1 className="mt-4 font-Berkshire md:text-6xl text-3xl text-[#0F0200] md:leading-[74px]">
               Sign up for{" "}
               <span className="text-[#F83D8E]">Exclusive Deals</span> <br /> and
               Updates
@@ -116,16 +116,9 @@ const SignUp = () => {
               </div>
 
               <div className="mt-8 md:flex md:items-center">
-                <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#F83D8E] rounded-lg md:w-1/2 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#F83D8E] rounded-lg  hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                   Sign in
                 </button>
-
-                <a
-                  href="#"
-                  className="inline-block font-Berkshire text-lg mt-4 text-center text-[#0F0200] md:mt-0 md:mx-6 hover:underline"
-                >
-                  Forgot your password?
-                </a>
               </div>
               {/* google sign in */}
               <p className="mt-4 font-Berkshire text-2xl text-end text-[#683292]">
@@ -134,7 +127,7 @@ const SignUp = () => {
 
               <a
                 href="#"
-                className="flex items-center bg-white justify-center px-6 py-3 mt-4 transition-colors duration-300 transform rounded-lg hover:bg-banner-gradient"
+                className="flex items-center bg-white border justify-center px-6 py-3 mt-4 transition-colors duration-300 transform rounded-lg hover:bg-banner-gradient"
               >
                 <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                   <path
