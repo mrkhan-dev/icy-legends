@@ -35,6 +35,7 @@ const SignUp = () => {
 
                 <input
                   type="text"
+                  name="name"
                   className="block w-full  py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Name"
                 />
@@ -54,7 +55,12 @@ const SignUp = () => {
 
                   <h2 className="mx-3 text-gray-400">Profile Photo</h2>
 
-                  <input id="dropzone-file" type="file" className="hidden" />
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    name="photo"
+                    className="hidden"
+                  />
                 </label>
               </div>
               <div className="relative flex items-center mt-4">
@@ -72,6 +78,7 @@ const SignUp = () => {
 
                 <input
                   type="email"
+                  name="email"
                   className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Email"
                 />
@@ -91,27 +98,9 @@ const SignUp = () => {
 
                 <input
                   type="password"
+                  name="password"
                   className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Password"
-                />
-              </div>
-              <div className="relative flex items-center mt-4">
-                <span className="absolute">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 mx-3 text-gray-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </span>
-
-                <input
-                  type="password"
-                  className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                  placeholder="Confirm Password"
                 />
               </div>
 
