@@ -1,7 +1,60 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import logo from "../assets/logo.png";
+import axios from "axios";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
+import {ImSpinner9} from "react-icons/im";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const {createUser, setLoading, updateUserProfile, loading, signInWithGoogle} =
+    useAuth();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const image = form.image.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+
+    try {
+      // 1. Upload image and get image url
+      setLoading(true);
+      const {data} = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_IMGBB_API_KEY
+        }`,
+        formData
+      );
+
+      //2. User Registration
+      const result = await createUser(email, password);
+      console.log(result);
+
+      // 3. Save username and photo in firebase
+      await updateUserProfile(name, data.data.display_url);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+
+  // Google SignIn
+  const handleGoogleSignIn = async () => {
+    try {
+      await await signInWithGoogle();
+      navigate("/");
+      toast.success("Login Successful");
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      toast.error(err.message);
+    }
+  };
+
   return (
     <section className="md:bg-signUp-image min-h-screen">
       <div className="container px-6 py-24 mx-auto lg:py-32">
@@ -19,7 +72,7 @@ const SignUp = () => {
           </div>
 
           <div className="mt-8 lg:w-1/2 lg:mt-0">
-            <form className="w-full lg:max-w-xl">
+            <form onSubmit={handleSubmit} className="w-full lg:max-w-xl">
               <div className="relative flex items-center">
                 <span className="absolute">
                   <svg
@@ -58,7 +111,7 @@ const SignUp = () => {
                   <input
                     id="dropzone-file"
                     type="file"
-                    name="photo"
+                    name="image"
                     className="hidden"
                   />
                 </label>
@@ -105,8 +158,15 @@ const SignUp = () => {
               </div>
 
               <div className="mt-8 md:flex md:items-center">
-                <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#F83D8E] rounded-lg  hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                  Sign in
+                <button
+                  disabled={loading}
+                  className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#F83D8E] rounded-lg focus:outline-none focus:ring focus:ring-[#F83D8E] focus:ring-opacity-50"
+                >
+                  {loading ? (
+                    <ImSpinner9 className="animate-spin m-auto" />
+                  ) : (
+                    "Sign Up"
+                  )}
                 </button>
               </div>
               {/* google sign in */}
@@ -114,9 +174,10 @@ const SignUp = () => {
                 or sign in with
               </p>
 
-              <a
-                href="#"
-                className="flex items-center bg-white border justify-center px-6 py-3 mt-4 transition-colors duration-300 transform rounded-lg hover:bg-banner-gradient"
+              <button
+                onClick={handleGoogleSignIn}
+                disabled={loading}
+                className="flex items-center bg-white border justify-center w-full px-6 py-3 mt-4 transition-colors duration-300 transform rounded-lg hover:bg-banner-gradient"
               >
                 <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                   <path
@@ -138,7 +199,7 @@ const SignUp = () => {
                 </svg>
 
                 <span className="mx-2">Sign in with Google</span>
-              </a>
+              </button>
             </form>
           </div>
         </div>
