@@ -50,6 +50,11 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
+
+    const favoriteIceCreamCollection = client
+      .db("icy-legends")
+      .collection("classic-favorite-ice-cream");
+
     app.post("/jwt", async (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
@@ -78,6 +83,11 @@ async function run() {
       } catch (err) {
         res.status(500).send(err);
       }
+    });
+
+    app.get("/favorite-iceCream", async (req, res) => {
+      const result = await favoriteIceCreamCollection.find().toArray();
+      res.send(result);
     });
     // await client.connect();
     // Send a ping to confirm a successful connection
